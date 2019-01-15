@@ -1,8 +1,8 @@
-package com.network.manyathesocialnetwork;
+package com.network.manyathesocialnetwork.post.common;
 
 import  com.google.gson.annotations.SerializedName;
 
-class PostItem {
+public class PostItem {
     @SerializedName("userId")
     private int userId;
     @SerializedName("id")

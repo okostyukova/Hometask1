@@ -1,13 +1,26 @@
-package com.network.manyathesocialnetwork;
+package com.network.manyathesocialnetwork.main.ui;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.MvpAppCompatActivity;
+import com.network.manyathesocialnetwork.adapter.PostAdapter;
+import com.network.manyathesocialnetwork.post.common.PostItem;
+import com.network.manyathesocialnetwork.R;
+
+
 import java.util.ArrayList;
 
-public class FeedActivity extends AppCompatActivity {
+import com.network.manyathesocialnetwork.main.mvp.MainActivityView;
+import  com.network.manyathesocialnetwork.main.mvp.MainActivityPresenter;
+
+
+public class MainActivity extends MvpAppCompatActivity implements MainActivityView {
+
+    @InjectPresenter
+    MainActivityPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,5 +45,16 @@ public class FeedActivity extends AppCompatActivity {
         recyclerView.setAdapter(postAdapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+    }
+
+    @Override
+    public void showPosts(ArrayList<PostItem> posts) {
+
+    }
+
+    @Override
+    public  void addPost() {
+
     }
 }
