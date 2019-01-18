@@ -1,12 +1,12 @@
-package com.network.manyathesocialnetwork.post.ui;
+package com.network.manyathesocialnetwork.presentation.post;
 
 import android.support.annotation.NonNull;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.network.manyathesocialnetwork.post.mvp.PostView;
-import com.network.manyathesocialnetwork.post.mvp.PostPresenter;
+import com.network.manyathesocialnetwork.presentation.post.PostView;
+import com.network.manyathesocialnetwork.presentation.post.PostPresenter;
 
 public class PostActivity extends MvpAppCompatActivity implements PostView {
 

@@ -1,4 +1,4 @@
-package com.network.manyathesocialnetwork.addPost.mvp;
+package com.network.manyathesocialnetwork.presentation.addPost;
 
 import com.arellomobile.mvp.MvpPresenter;
 

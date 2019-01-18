@@ -1,8 +1,9 @@
-package com.network.manyathesocialnetwork.post.common;
+package com.network.manyathesocialnetwork.domain.entity;
 
 import  com.google.gson.annotations.SerializedName;
 
-public class PostItem {
+public class Post {
+
     @SerializedName("userId")
     private int userId;
     @SerializedName("id")
@@ -12,7 +13,7 @@ public class PostItem {
     @SerializedName("body")
     private  String body;
 
-    public PostItem(int userId, int id, String title, String body) {
+    public Post(int userId, int id, String title, String body) {
         this.userId = userId;
         this.id = id;
         this.title = title;
@@ -23,15 +24,25 @@ public class PostItem {
         return userId;
     }
 
+    public void setUserId(int id) { this.userId = id; }
+
     public int getId() {
         return  id;
     }
+
+    public void setId(int id) { this.id = id; }
 
     public String getTitle() {
         return title;
     }
 
+    public void setTitle(String title) { this.title = title; }
+
     public String getBody() {
         return  body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
     }
 }

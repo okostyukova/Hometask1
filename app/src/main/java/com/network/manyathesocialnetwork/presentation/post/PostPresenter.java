@@ -1,14 +1,12 @@
-package com.network.manyathesocialnetwork.post.mvp;
-
-import android.support.annotation.NonNull;
+package com.network.manyathesocialnetwork.presentation.post;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
-import com.network.manyathesocialnetwork.post.common.PostItem;
+import com.network.manyathesocialnetwork.domain.entity.Post;
 
 @InjectViewState
 public class PostPresenter extends MvpPresenter<PostView> {
-    private PostItem post;
+    private Post post;
 
     @Override
     public void attachView(PostView view) {
@@ -20,7 +18,7 @@ public class PostPresenter extends MvpPresenter<PostView> {
         super.detachView(view);
     }
 
-    public void setPost(PostItem post) {
+    public void setPost(Post post) {
         this.post = post;
     }
 }

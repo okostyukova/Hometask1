@@ -1,10 +1,10 @@
-package com.network.manyathesocialnetwork.addPost.ui;
+package com.network.manyathesocialnetwork.presentation.addPost;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.network.manyathesocialnetwork.addPost.mvp.AddPostView;
+import com.network.manyathesocialnetwork.presentation.addPost.AddPostView;
 
-import com.network.manyathesocialnetwork.addPost.mvp.AddPostPresenter;
+import com.network.manyathesocialnetwork.presentation.addPost.AddPostPresenter;
 
 public class AddPostActivity extends MvpAppCompatActivity implements AddPostView {
 
