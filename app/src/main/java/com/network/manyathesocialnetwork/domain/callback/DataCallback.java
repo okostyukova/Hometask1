@@ -1,6 +1,9 @@
 package com.network.manyathesocialnetwork.domain.callback;
 
-public interface DataCallback {
-    void onSuccess();
-    void onError();
+import java.util.List;
+
+public interface DataCallback<T> {
+    void onSuccess(List<T> list);
+    void onSuccessOneObject(T obj);
+    void onError(String message);
 }

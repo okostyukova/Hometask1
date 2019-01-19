@@ -28,7 +28,7 @@ public class MainActivityPresenter extends MvpPresenter<MainActivityView> {
 
     }
 
-    public void showPosts(Callback callback) {
-        postInteractor.getPosts(callback);
+    public void showPosts() {
+        postInteractor.getPosts();
     }
 }

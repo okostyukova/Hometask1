@@ -1,20 +1,21 @@
 package com.network.manyathesocialnetwork.presentation.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.MvpAppCompatActivity;
-import com.network.manyathesocialnetwork.presentation.post.PostAdapter;
+import com.network.manyathesocialnetwork.presentation.post.PostActivity;
 import com.network.manyathesocialnetwork.domain.entity.Post;
 import com.network.manyathesocialnetwork.R;
+import com.network.manyathesocialnetwork.presentation.post.PostAdapter;
 
 
 import java.util.ArrayList;
 
 import javax.inject.Inject;
-import javax.security.auth.callback.Callback;
 
 
 public class MainActivity extends MvpAppCompatActivity implements MainActivityView {
@@ -22,6 +23,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainActivityVi
     @Inject
     @InjectPresenter
     MainActivityPresenter presenter;
+
 
 //    @Inject
 //    MainAdapter mainAdapter;
@@ -45,12 +47,25 @@ public class MainActivity extends MvpAppCompatActivity implements MainActivityVi
         data.add(new Post(9, 3, "qwerty3", "asdfghjkl3"));
         data.add(new Post(10, 3, "qwerty3", "asdfghjkl3"));
 
-        MainAdapter mainAdapter = new MainAdapter(data);
+        MainAdapter mainAdapter = new MainAdapter(data, new MainAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Post item) {
+                Intent intent = new Intent(getApplicationContext(), PostActivity.class);
+                startActivity(intent);
+            }
+        });
         recyclerView.setAdapter(mainAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         presenter.showPosts();
     }
 
-//    @Override
-//    public  void addPost(Post newPost) { }
+    @Override
+    public  void addPost(Post newPost) {
+
+    }
+
+    @Override
+    public void showError(String message) {
+
+    }
 }

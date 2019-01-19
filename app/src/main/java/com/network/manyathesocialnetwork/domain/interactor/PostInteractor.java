@@ -17,8 +17,8 @@ public class PostInteractor {
         this.postRepository = postRepository;
     }
 
-    public void getPosts(Callback callback) {
-        postRepository.getPosts(callback);
+    public void getPosts() {
+        postRepository.getPosts();
     }
 
 }

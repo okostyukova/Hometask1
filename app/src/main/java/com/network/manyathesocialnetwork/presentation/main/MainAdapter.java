@@ -9,16 +9,22 @@ import android.widget.TextView;
 
 import com.network.manyathesocialnetwork.R;
 import com.network.manyathesocialnetwork.domain.entity.Post;
-import com.network.manyathesocialnetwork.presentation.post.PostAdapter;
 
 import java.util.List;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
+    public interface OnItemClickListener {
+        void onItemClick(Post item);
+    }
+
+    private final OnItemClickListener listener;
     private List<Post> posts;
 
-    public MainAdapter(List<Post> data) {
+
+    public MainAdapter(List<Post> data, OnItemClickListener listener) {
         this.posts = data;
+        this.listener = listener;
     }
 
     @NonNull
@@ -34,6 +40,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         holder.userIdView.setText(String.valueOf(post.getUserId()));
         holder.titleView.setText(post.getTitle());
         holder.bodyView.setText(post.getBody());
+        holder.bind(posts.get(position), listener);
     }
 
     @Override
@@ -52,6 +59,15 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             userIdView = itemView.findViewById(R.id.userId);
             titleView = itemView.findViewById(R.id.title);
             bodyView = itemView.findViewById(R.id.body);
+        }
+
+
+        public void bind(final Post item, final OnItemClickListener listener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    listener.onItemClick(item);
+                }
+            });
         }
     }
 }
