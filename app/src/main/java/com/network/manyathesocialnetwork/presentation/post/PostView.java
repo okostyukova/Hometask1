@@ -1,11 +1,11 @@
 package com.network.manyathesocialnetwork.presentation.post;
 
-import android.support.annotation.NonNull;
-
 import com.arellomobile.mvp.MvpView;
 
+import com.network.manyathesocialnetwork.domain.entity.Comment;
+
+import java.util.List;
+
 public interface PostView extends MvpView {
-    void setupUserId(int id);
-    void setupTitle(String title);
-    void setupBody(String body);
+    void showComments(List<Comment> comments);
 }

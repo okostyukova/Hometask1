@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName;
 
 public class Comment {
     @SerializedName("postId")
-    int postId;
+    private int postId;
     @SerializedName("id")
-    int id;
+    private int id;
     @SerializedName("name")
-    String name;
+    private String name;
     @SerializedName("body")
-    String body;
+    private String body;
 
     public void setPostId(int postId) {
         this.postId = postId;

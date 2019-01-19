@@ -5,24 +5,21 @@ import android.support.annotation.NonNull;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.network.manyathesocialnetwork.domain.entity.Comment;
 import com.network.manyathesocialnetwork.presentation.post.PostView;
 import com.network.manyathesocialnetwork.presentation.post.PostPresenter;
+
+import java.util.List;
 
 public class PostActivity extends MvpAppCompatActivity implements PostView {
 
     @InjectPresenter
     PostPresenter presenter;
 
-    @Override
-    public void setupUserId(int id) {
+    PostAdapter postAdapter;
 
-    }
     @Override
-    public void setupTitle(@NonNull String title) {
-
-    }
-    @Override
-    public void setupBody(@NonNull String body) {
-
+    public void showComments(List<Comment> comments) {
+        postAdapter.setComments(comments);
     }
 }

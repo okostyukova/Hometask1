@@ -22,8 +22,8 @@ public class MainActivity extends MvpAppCompatActivity implements MainActivityVi
     @InjectPresenter
     MainActivityPresenter presenter;
 
-    @Inject
-    PostAdapter postAdapter;
+//    @Inject
+//    MainAdapter mainAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,18 +44,10 @@ public class MainActivity extends MvpAppCompatActivity implements MainActivityVi
         data.add(new Post(9, 3, "qwerty3", "asdfghjkl3"));
         data.add(new Post(10, 3, "qwerty3", "asdfghjkl3"));
 
-        PostAdapter postAdapter = new PostAdapter(data);
-        recyclerView.setAdapter(postAdapter);
-
+        MainAdapter mainAdapter = new MainAdapter(data);
+        recyclerView.setAdapter(mainAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-    }
-
-    @Override
-    public void showPosts(ArrayList<Post> posts) {
-        RecyclerView recyclerView = findViewById(R.id.feed_recycler);
-
-
+        presenter.showPosts();
     }
 
 //    @Override

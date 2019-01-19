@@ -3,8 +3,12 @@ package com.network.manyathesocialnetwork.presentation.main;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
+import com.network.manyathesocialnetwork.domain.interactor.PostInteractor;
+
 @InjectViewState
 public class MainActivityPresenter extends MvpPresenter<MainActivityView> {
+
+    PostInteractor postInteractor;
 
     @Override
     public void attachView(MainActivityView view) {
@@ -20,5 +24,9 @@ public class MainActivityPresenter extends MvpPresenter<MainActivityView> {
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
 
+    }
+
+    public void showPosts() {
+        postInteractor.getPosts();
     }
 }

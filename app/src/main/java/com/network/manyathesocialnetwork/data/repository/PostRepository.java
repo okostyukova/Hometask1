@@ -1,27 +1,28 @@
 package com.network.manyathesocialnetwork.data.repository;
 
+import com.network.manyathesocialnetwork.domain.entity.Post;
 import com.network.manyathesocialnetwork.domain.repository.IPostRepository;
 
 import com.network.manyathesocialnetwork.domain.entity.Comment;
-import com.network.manyathesocialnetwork.data.storage.Provider;
+import com.network.manyathesocialnetwork.data.api.ApiService;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PostRepository implements IPostRepository {
 
-    Provider.IPostStorage provider;
-
-//    @Override
-//    public void requestUser(int userId) {
-//
-//    }
-//
-//    @Override
-//    public void requestPost(int postId) {
-//
-//    }
 
     @Override
-    public Comment getComments(int id) {
-        provider.g
+    public void getPosts() {
+
+    }
+
+    @Override
+    public void getComments(int id) {
+
     }
 
     @Override

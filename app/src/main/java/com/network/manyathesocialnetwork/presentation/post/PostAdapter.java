@@ -8,16 +8,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.network.manyathesocialnetwork.R;
-import com.network.manyathesocialnetwork.domain.entity.Post;
+import com.network.manyathesocialnetwork.domain.entity.Comment;
 
 import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
-    private List<Post> data;
+    private List<Comment> comments;
 
-    public PostAdapter(List<Post> data) {
-        this.data = data;
+    public void setComments(List<Comment> data) {
+        this.comments = data;
+        //notifyDataSetChanged();
     }
 
     @NonNull
@@ -28,33 +29,32 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Post post = data.get(position);
+        Comment comment = comments.get(position);
 
-        holder.userIdView.setText(String.valueOf(post.getUserId()));
-        holder.titleView.setText(post.getTitle());
-        holder.bodyView.setText(post.getBody());
+        holder.postIdView.setText(String.valueOf(comment.getPostId()));
+        holder.numberIdView.setText(String.valueOf(comment.getId()));
+        holder.nameView.setText(comment.getName());
+        holder.bodyView.setText(comment.getBody());
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
-    }
-
-    void addPost(Post newPost) {
-        data.add(newPost);
+        return comments.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView userIdView;
-        TextView titleView;
+        TextView postIdView;
+        TextView numberIdView;
+        TextView nameView;
         TextView bodyView;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            userIdView = itemView.findViewById(R.id.userId);
-            titleView = itemView.findViewById(R.id.title);
-            bodyView = itemView.findViewById(R.id.body);
+            postIdView = itemView.findViewById(R.id.postId);
+            numberIdView = itemView.findViewById(R.id.numberId);
+            nameView = itemView.findViewById(R.id.name);
+            bodyView = itemView.findViewById(R.id.postBody);
         }
     }
 }
