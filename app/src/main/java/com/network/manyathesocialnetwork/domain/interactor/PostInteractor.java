@@ -6,6 +6,7 @@ import com.network.manyathesocialnetwork.domain.entity.Post;
 
 
 import javax.inject.Inject;
+import javax.security.auth.callback.Callback;
 
 public class PostInteractor {
 
@@ -16,8 +17,8 @@ public class PostInteractor {
         this.postRepository = postRepository;
     }
 
-    public void getPosts() {
-        postRepository.getPosts();
+    public void getPosts(Callback callback) {
+        postRepository.getPosts(callback);
     }
 
 }

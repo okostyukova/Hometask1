@@ -5,6 +5,8 @@ import com.arellomobile.mvp.MvpPresenter;
 
 import com.network.manyathesocialnetwork.domain.interactor.PostInteractor;
 
+import javax.security.auth.callback.Callback;
+
 @InjectViewState
 public class MainActivityPresenter extends MvpPresenter<MainActivityView> {
 
@@ -26,7 +28,7 @@ public class MainActivityPresenter extends MvpPresenter<MainActivityView> {
 
     }
 
-    public void showPosts() {
-        postInteractor.getPosts();
+    public void showPosts(Callback callback) {
+        postInteractor.getPosts(callback);
     }
 }

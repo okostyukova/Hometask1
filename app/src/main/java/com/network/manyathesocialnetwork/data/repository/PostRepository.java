@@ -14,9 +14,8 @@ import retrofit2.Response;
 
 public class PostRepository implements IPostRepository {
 
-
     @Override
-    public void getPosts() {
+    public void getPosts(javax.security.auth.callback.Callback callback) {
 
     }
 
