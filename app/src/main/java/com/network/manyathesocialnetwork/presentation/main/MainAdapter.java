@@ -30,7 +30,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     @NonNull
     @Override
     public MainAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new MainAdapter.ViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_post_item, viewGroup, false));
+        return new MainAdapter.ViewHolder(LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.activity_post_item, viewGroup, false));
     }
 
     @Override

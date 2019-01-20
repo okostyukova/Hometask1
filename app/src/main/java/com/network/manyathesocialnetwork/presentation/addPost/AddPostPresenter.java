@@ -3,6 +3,7 @@ package com.network.manyathesocialnetwork.presentation.addPost;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
+import com.network.manyathesocialnetwork.domain.callback.DataCallback;
 import com.network.manyathesocialnetwork.domain.interactor.AddPostInteractor;
 import com.network.manyathesocialnetwork.domain.entity.Post;
 
@@ -17,7 +18,7 @@ public class AddPostPresenter extends MvpPresenter<AddPostView> {
         this.addPostInteractor = addPostInteractor;
     }
 
-    public void addPost() {
-        addPostInteractor.addPost();
+    public void addPost(int userId, int id, String title, String body, DataCallback<Post> callback) {
+        addPostInteractor.addPost(userId, id, title, body, callback);
     }
 }

@@ -2,8 +2,9 @@ package com.network.manyathesocialnetwork.presentation.addPost;
 
 import com.arellomobile.mvp.MvpView;
 
+import com.network.manyathesocialnetwork.domain.callback.DataCallback;
 import com.network.manyathesocialnetwork.domain.entity.Post;
 
 public interface AddPostView extends MvpView {
-    void addPost(Post post);
+    void addPost(int userId, int id, String title, String body, DataCallback<Post> callback);
 }

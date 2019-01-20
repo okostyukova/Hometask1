@@ -3,32 +3,41 @@ package com.network.manyathesocialnetwork.presentation.main;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
+import com.network.manyathesocialnetwork.domain.callback.DataCallback;
 import com.network.manyathesocialnetwork.domain.interactor.PostInteractor;
 
-import javax.security.auth.callback.Callback;
+import com.network.manyathesocialnetwork.domain.entity.Post;
+
+import java.util.List;
+
+import javax.inject.Inject;
 
 @InjectViewState
 public class MainActivityPresenter extends MvpPresenter<MainActivityView> {
 
-    PostInteractor postInteractor;
+    private PostInteractor postInteractor;
 
-    @Override
-    public void attachView(MainActivityView view) {
-        super.attachView(view);
+    @Inject
+    MainActivityPresenter(PostInteractor postInteractor) {
+        this.postInteractor = postInteractor;
     }
 
-    @Override
-    public void detachView(MainActivityView view) {
-        super.detachView(view);
-    }
-
-    @Override
-    protected void onFirstViewAttach() {
-        super.onFirstViewAttach();
-
-    }
 
     public void showPosts() {
-        postInteractor.getPosts();
+        postInteractor.getPosts(new DataCallback<Post>() {
+            @Override
+            public void onSuccess(List<Post> posts) {
+                getViewState().addPost();
+            }
+
+            @Override
+            public void onSuccessOneObject(Post post) {}
+
+            @Override
+            public void onError(String msg) {
+                getViewState().showError("Error");
+            }
+        });
     }
+
 }

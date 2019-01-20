@@ -6,6 +6,7 @@ import com.network.manyathesocialnetwork.domain.entity.Post;
 import java.util.List;
 
 public interface MainActivityView extends MvpView {
-   void addPost(Post newPost);
-   void showError(String message);
+    void addPost();
+    void showComments();
+    void showError(String msg);
 }

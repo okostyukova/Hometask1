@@ -2,18 +2,20 @@ package com.network.manyathesocialnetwork.presentation.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.network.manyathesocialnetwork.presentation.post.PostActivity;
 import com.network.manyathesocialnetwork.domain.entity.Post;
 import com.network.manyathesocialnetwork.R;
-import com.network.manyathesocialnetwork.presentation.post.PostAdapter;
-
 
 import java.util.ArrayList;
+
+import com.network.manyathesocialnetwork.presentation.addPost.AddPostActivity;
 
 import javax.inject.Inject;
 
@@ -24,10 +26,6 @@ public class MainActivity extends MvpAppCompatActivity implements MainActivityVi
     @InjectPresenter
     MainActivityPresenter presenter;
 
-
-//    @Inject
-//    MainAdapter mainAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,22 +34,11 @@ public class MainActivity extends MvpAppCompatActivity implements MainActivityVi
         RecyclerView recyclerView = findViewById(R.id.feed_recycler);
 
         ArrayList<Post> data = new ArrayList<>();
-        data.add(new Post(1, 1, "qwerty", "asdfghjkl"));
-        data.add(new Post(2, 2, "qwerty2", "asdfghjkl2"));
-        data.add(new Post(3, 3, "qwerty3", "asdfghjkl3"));
-        data.add(new Post(4, 3, "qwerty3", "asdfghjkl3"));
-        data.add(new Post(5, 3, "qwerty3", "asdfghjkl3"));
-        data.add(new Post(6, 3, "qwerty3", "asdfghjkl3"));
-        data.add(new Post(7, 3, "qwerty3", "asdfghjkl3"));
-        data.add(new Post(8, 3, "qwerty3", "asdfghjkl3"));
-        data.add(new Post(9, 3, "qwerty3", "asdfghjkl3"));
-        data.add(new Post(10, 3, "qwerty3", "asdfghjkl3"));
 
         MainAdapter mainAdapter = new MainAdapter(data, new MainAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Post item) {
-                Intent intent = new Intent(getApplicationContext(), PostActivity.class);
-                startActivity(intent);
+                showComments();
             }
         });
         recyclerView.setAdapter(mainAdapter);
@@ -60,12 +47,24 @@ public class MainActivity extends MvpAppCompatActivity implements MainActivityVi
     }
 
     @Override
-    public  void addPost(Post newPost) {
-
+    public void addPost() {
+        Intent intent = new Intent(this, AddPostActivity.class);
+        startActivityForResult(intent, 1);
     }
 
     @Override
-    public void showError(String message) {
+    public void showComments() {
+        Intent intent = new Intent(getApplicationContext(), PostActivity.class);
+        startActivityForResult(intent, 2);
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void showError(String msg) {
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
 }

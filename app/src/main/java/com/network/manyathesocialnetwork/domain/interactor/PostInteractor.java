@@ -1,5 +1,6 @@
 package com.network.manyathesocialnetwork.domain.interactor;
 
+import com.network.manyathesocialnetwork.domain.callback.DataCallback;
 import com.network.manyathesocialnetwork.domain.repository.IPostRepository;
 
 import com.network.manyathesocialnetwork.domain.entity.Post;
@@ -17,8 +18,8 @@ public class PostInteractor {
         this.postRepository = postRepository;
     }
 
-    public void getPosts() {
-        postRepository.getPosts();
+    public void getPosts(DataCallback<Post> callback) {
+        postRepository.getPosts(callback);
     }
 
 }
