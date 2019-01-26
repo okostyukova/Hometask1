@@ -1,4 +1,4 @@
-package com.network.manyathesocialnetwork.presentation.addPost;
+package com.network.manyathesocialnetwork.presentation.add_post;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -8,9 +8,6 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.network.manyathesocialnetwork.R;
 import com.network.manyathesocialnetwork.domain.callback.DataCallback;
 import com.network.manyathesocialnetwork.domain.entity.Post;
-import com.network.manyathesocialnetwork.presentation.addPost.AddPostView;
-
-import com.network.manyathesocialnetwork.presentation.addPost.AddPostPresenter;
 
 public class AddPostActivity extends MvpAppCompatActivity implements AddPostView {
 

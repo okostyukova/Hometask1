@@ -10,7 +10,6 @@ public class AddPostInteractor {
 
     private IPostRepository postRepository;
 
-    @Inject
     AddPostInteractor (IPostRepository postRepository) {
         this.postRepository = postRepository;
     }

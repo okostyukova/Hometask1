@@ -9,13 +9,15 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.MvpAppCompatActivity;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.network.manyathesocialnetwork.presentation.post.PostActivity;
 import com.network.manyathesocialnetwork.domain.entity.Post;
 import com.network.manyathesocialnetwork.R;
 
 import java.util.ArrayList;
 
-import com.network.manyathesocialnetwork.presentation.addPost.AddPostActivity;
+import com.network.manyathesocialnetwork.presentation.add_post.AddPostActivity;
+import com.network.manyathesocialnetwork.di.App;
 
 import javax.inject.Inject;
 
@@ -26,24 +28,18 @@ public class MainActivity extends MvpAppCompatActivity implements MainActivityVi
     @InjectPresenter
     MainActivityPresenter presenter;
 
+    @ProvidePresenter
+    MainActivityPresenter provideMainActivityPresenter() {
+        return presenter;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        App.getAppComponent().inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
 
-        RecyclerView recyclerView = findViewById(R.id.feed_recycler);
-
-        ArrayList<Post> data = new ArrayList<>();
-
-        MainAdapter mainAdapter = new MainAdapter(data, new MainAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Post item) {
-                showComments();
-            }
-        });
-        recyclerView.setAdapter(mainAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        presenter.showPosts();
+        init();
     }
 
     @Override
@@ -66,5 +62,21 @@ public class MainActivity extends MvpAppCompatActivity implements MainActivityVi
     @Override
     public void showError(String msg) {
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+    public void init() {
+        RecyclerView recyclerView = findViewById(R.id.feed_recycler);
+
+        ArrayList<Post> data = new ArrayList<>();
+
+        MainAdapter mainAdapter = new MainAdapter(data, new MainAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Post item) {
+                showComments();
+            }
+        });
+        recyclerView.setAdapter(mainAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        presenter.showPosts();
     }
 }

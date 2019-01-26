@@ -11,7 +11,6 @@ public class CommentInteractor {
     private IPostRepository postRepository;
     DataCallback<Comment> callback;
 
-    @Inject
     CommentInteractor(IPostRepository postRepository) {
         this.postRepository = postRepository;
     }

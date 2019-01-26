@@ -22,7 +22,6 @@ public class MainActivityPresenter extends MvpPresenter<MainActivityView> {
         this.postInteractor = postInteractor;
     }
 
-
     public void showPosts() {
         postInteractor.getPosts(new DataCallback<Post>() {
             @Override

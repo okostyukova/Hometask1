@@ -1,4 +1,4 @@
-package com.network.manyathesocialnetwork.presentation.addPost;
+package com.network.manyathesocialnetwork.presentation.add_post;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
