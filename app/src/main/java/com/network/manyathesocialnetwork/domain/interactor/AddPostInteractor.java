@@ -1,16 +1,14 @@
 package com.network.manyathesocialnetwork.domain.interactor;
 
 import com.network.manyathesocialnetwork.domain.callback.DataCallback;
-import com.network.manyathesocialnetwork.domain.repository.IPostRepository;
+import com.network.manyathesocialnetwork.domain.repository.PostRepository;
 import com.network.manyathesocialnetwork.domain.entity.Post;
-
-import javax.inject.Inject;
 
 public class AddPostInteractor {
 
-    private IPostRepository postRepository;
+    private PostRepository postRepository;
 
-    AddPostInteractor (IPostRepository postRepository) {
+    AddPostInteractor (PostRepository postRepository) {
         this.postRepository = postRepository;
     }
 

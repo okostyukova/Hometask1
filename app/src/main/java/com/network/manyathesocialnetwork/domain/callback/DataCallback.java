@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface DataCallback<T> {
     void onSuccess(List<T> list);
-    void onSuccessOneObject(T obj);
+    void onSuccessOneObject(T temp);
     void onError(String message);
 }

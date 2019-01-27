@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -49,6 +50,11 @@ public class MainActivity extends MvpAppCompatActivity implements MainActivityVi
     }
 
     @Override
+    public void showPosts() {
+
+    }
+
+    @Override
     public void showComments() {
         Intent intent = new Intent(getApplicationContext(), PostActivity.class);
         startActivityForResult(intent, 2);
@@ -64,15 +70,17 @@ public class MainActivity extends MvpAppCompatActivity implements MainActivityVi
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
+
     public void init() {
         RecyclerView recyclerView = findViewById(R.id.feed_recycler);
 
         ArrayList<Post> data = new ArrayList<>();
 
-        MainAdapter mainAdapter = new MainAdapter(data, new MainAdapter.OnItemClickListener() {
+        MainAdapter mainAdapter = new MainAdapter(data, new View.OnClickListener() {
             @Override
-            public void onItemClick(Post item) {
-                showComments();
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PostActivity.class);
+                startActivityForResult(intent, 2);
             }
         });
         recyclerView.setAdapter(mainAdapter);

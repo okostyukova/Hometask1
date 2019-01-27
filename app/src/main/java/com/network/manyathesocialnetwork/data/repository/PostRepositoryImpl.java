@@ -1,10 +1,10 @@
 package com.network.manyathesocialnetwork.data.repository;
 
 import com.network.manyathesocialnetwork.domain.entity.Post;
-import com.network.manyathesocialnetwork.domain.repository.IPostRepository;
+import com.network.manyathesocialnetwork.domain.repository.PostRepository;
 
 import com.network.manyathesocialnetwork.domain.entity.Comment;
-import com.network.manyathesocialnetwork.data.api.ApiService;
+import com.network.manyathesocialnetwork.data.api.*;
 
 import java.util.List;
 
@@ -16,9 +16,16 @@ import com.network.manyathesocialnetwork.domain.callback.DataCallback;
 
 import javax.inject.Inject;
 
-public class PostRepository implements IPostRepository {
+public class PostRepositoryImpl implements PostRepository {
 
     private final String ERROR_MESSAGE = "Something went wrong :(";
+
+    private ApiInterface apiInterface;
+
+    @Inject
+    public PostRepositoryImpl(ApiInterface apiInterface) {
+        this.apiInterface = apiInterface;
+    }
 
     @Override
     public void getPosts(final DataCallback<Post> callback) {

@@ -8,6 +8,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.network.manyathesocialnetwork.R;
 import com.network.manyathesocialnetwork.domain.callback.DataCallback;
 import com.network.manyathesocialnetwork.domain.entity.Post;
+import com.network.manyathesocialnetwork.di.App;
 
 public class AddPostActivity extends MvpAppCompatActivity implements AddPostView {
 
@@ -18,10 +19,9 @@ public class AddPostActivity extends MvpAppCompatActivity implements AddPostView
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        App.getAppComponent().inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
-
-
     }
 
     @Override

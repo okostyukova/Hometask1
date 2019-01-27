@@ -2,16 +2,14 @@ package com.network.manyathesocialnetwork.domain.interactor;
 
 import com.network.manyathesocialnetwork.domain.callback.DataCallback;
 import com.network.manyathesocialnetwork.domain.entity.Comment;
-import com.network.manyathesocialnetwork.domain.repository.IPostRepository;
-
-import javax.inject.Inject;
+import com.network.manyathesocialnetwork.domain.repository.PostRepository;
 
 public class CommentInteractor {
 
-    private IPostRepository postRepository;
+    private PostRepository postRepository;
     DataCallback<Comment> callback;
 
-    CommentInteractor(IPostRepository postRepository) {
+    CommentInteractor(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
 

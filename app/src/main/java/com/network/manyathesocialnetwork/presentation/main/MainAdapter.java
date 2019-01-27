@@ -14,15 +14,11 @@ import java.util.List;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
-    public interface OnItemClickListener {
-        void onItemClick(Post item);
-    }
-
-    private final OnItemClickListener listener;
     private List<Post> posts;
+    private View.OnClickListener listener;
 
 
-    public MainAdapter(List<Post> data, OnItemClickListener listener) {
+    public MainAdapter(List<Post> data, View.OnClickListener listener) {
         this.posts = data;
         this.listener = listener;
     }
@@ -41,7 +37,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         holder.userIdView.setText(String.valueOf(post.getUserId()));
         holder.titleView.setText(post.getTitle());
         holder.bodyView.setText(post.getBody());
-        holder.bind(posts.get(position), listener);
+        holder.itemView.setOnClickListener(listener);
     }
 
     @Override
@@ -50,6 +46,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
+
         TextView userIdView;
         TextView titleView;
         TextView bodyView;
@@ -60,15 +57,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             userIdView = itemView.findViewById(R.id.userId);
             titleView = itemView.findViewById(R.id.title);
             bodyView = itemView.findViewById(R.id.body);
-        }
-
-
-        public void bind(final Post item, final OnItemClickListener listener) {
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View v) {
-                    listener.onItemClick(item);
-                }
-            });
         }
     }
 }
