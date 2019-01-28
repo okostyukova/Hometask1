@@ -12,15 +12,22 @@ import com.network.manyathesocialnetwork.domain.entity.Post;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     private List<Post> posts;
     private View.OnClickListener listener;
 
 
-    public MainAdapter(List<Post> data, View.OnClickListener listener) {
+    @Inject
+    MainAdapter(List<Post> data, View.OnClickListener listener) {
         this.posts = data;
         this.listener = listener;
+    }
+
+    public void loadPosts(List<Post> posts) {
+        this.posts.addAll(posts);
     }
 
     @NonNull
@@ -56,7 +63,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
             userIdView = itemView.findViewById(R.id.userId);
             titleView = itemView.findViewById(R.id.title);
-            bodyView = itemView.findViewById(R.id.body);
+            bodyView = itemView.findViewById(R.id.postBody);
         }
     }
 }

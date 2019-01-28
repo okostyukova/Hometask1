@@ -15,16 +15,19 @@ import java.util.List;
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     private List<Comment> comments;
+    private View.OnClickListener listener;
 
-    public void setComments(List<Comment> data) {
+
+    public void setComments(List<Comment> data, View.OnClickListener listener) {
         this.comments = data;
+        this.listener = listener;
         //notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new ViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_post_item, viewGroup, false));
+        return new ViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_comment_item, viewGroup, false));
     }
 
     @Override

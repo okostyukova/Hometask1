@@ -16,6 +16,7 @@ import com.network.manyathesocialnetwork.domain.entity.Post;
 import com.network.manyathesocialnetwork.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.network.manyathesocialnetwork.presentation.add_post.AddPostActivity;
 import com.network.manyathesocialnetwork.di.App;
@@ -34,6 +35,8 @@ public class MainActivity extends MvpAppCompatActivity implements MainActivityVi
         return presenter;
     }
 
+    private MainAdapter mainAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         App.getAppComponent().inject(this);
@@ -50,8 +53,8 @@ public class MainActivity extends MvpAppCompatActivity implements MainActivityVi
     }
 
     @Override
-    public void showPosts() {
-
+    public void showPosts(List<Post> posts) {
+        mainAdapter.loadPosts(posts);
     }
 
     @Override
@@ -76,7 +79,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainActivityVi
 
         ArrayList<Post> data = new ArrayList<>();
 
-        MainAdapter mainAdapter = new MainAdapter(data, new View.OnClickListener() {
+        mainAdapter = new MainAdapter(data, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PostActivity.class);

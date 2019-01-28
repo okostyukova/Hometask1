@@ -26,7 +26,7 @@ public class MainActivityPresenter extends MvpPresenter<MainActivityView> {
         postInteractor.getPosts(new DataCallback<Post>() {
             @Override
             public void onSuccess(List<Post> posts) {
-                getViewState().showPosts();
+                getViewState().showPosts(posts);
             }
 
             @Override
