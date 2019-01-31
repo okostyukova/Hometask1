@@ -6,6 +6,7 @@ import com.network.manyathesocialnetwork.domain.entity.Post;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -19,6 +20,5 @@ public interface ApiInterface {
     Call<List<Comment>> getComments(@Query("postId") int postId);
 
     @POST("/posts")
-    Call<Post> addPost(@Field("userId") int userId, @Field("id") int id,
-                       @Field("title") String title, @Field("body") String body);
+    Call<Post> addPost(@Body Post post);
 }

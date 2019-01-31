@@ -66,14 +66,14 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public void addPost(int userId, int id, String title, String body, final DataCallback<Post> callback) {
+    public void addPost(Post post, final DataCallback<Post> callback) {
         ApiService.getApiInterface()
-                .addPost(userId, id, title, body)
+                .addPost(post)
                 .enqueue(new Callback<Post>() {
                     @Override
                     public void onResponse(Call<Post> call, Response<Post> response) {
                         if (response.body() != null) {
-                            callback.onSuccessOneObject(response.body());
+                            callback.onSuccess(response.body());
                         }
                     }
 

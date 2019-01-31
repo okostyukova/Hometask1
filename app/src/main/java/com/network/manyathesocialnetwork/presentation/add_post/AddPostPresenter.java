@@ -7,10 +7,13 @@ import com.network.manyathesocialnetwork.domain.callback.DataCallback;
 import com.network.manyathesocialnetwork.domain.interactor.AddPostInteractor;
 import com.network.manyathesocialnetwork.domain.entity.Post;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 @InjectViewState
 public class AddPostPresenter extends MvpPresenter<AddPostView> {
+
     private AddPostInteractor addPostInteractor;
 
     @Inject
@@ -18,7 +21,20 @@ public class AddPostPresenter extends MvpPresenter<AddPostView> {
         this.addPostInteractor = addPostInteractor;
     }
 
-    public void addPost(int userId, int id, String title, String body, DataCallback<Post> callback) {
-        addPostInteractor.addPost(userId, id, title, body, callback);
+    public void createPost(Post post) {
+        addPostInteractor.addPost(post, new DataCallback<Post>() {
+            @Override
+            public void onSuccess(List<Post> list) {}
+
+            @Override
+            public void onSuccess(Post post) {
+                getViewState().addPost(post);
+            }
+
+            @Override
+            public void onError(String message) {
+                getViewState().addPostError();
+            }
+        });
     }
 }

@@ -1,4 +1,4 @@
-package com.network.manyathesocialnetwork.presentation.post;
+package com.network.manyathesocialnetwork.presentation.comment;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,25 +9,33 @@ import android.widget.TextView;
 
 import com.network.manyathesocialnetwork.R;
 import com.network.manyathesocialnetwork.domain.entity.Comment;
+import com.network.manyathesocialnetwork.domain.entity.Post;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
+import javax.inject.Inject;
 
-    private List<Comment> comments;
-    private View.OnClickListener listener;
+public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHolder> {
 
+    private Post post;
+    private List<Comment> comments = new ArrayList<>();
 
-    public void setComments(List<Comment> data, View.OnClickListener listener) {
-        this.comments = data;
-        this.listener = listener;
-        //notifyDataSetChanged();
+    @Inject
+    CommentAdapter(Post post) {
+        this.post = post;
+    }
+
+    public void loadComments(List<Comment> comments) {
+        this.comments.addAll(comments);
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new ViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_comment_item, viewGroup, false));
+        return new ViewHolder(LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.activity_comment_item, viewGroup, false));
     }
 
     @Override
@@ -57,7 +65,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             postIdView = itemView.findViewById(R.id.postId);
             numberIdView = itemView.findViewById(R.id.numberId);
             nameView = itemView.findViewById(R.id.name);
-            bodyView = itemView.findViewById(R.id.postBody);
+            bodyView = itemView.findViewById(R.id.body);
         }
     }
 }

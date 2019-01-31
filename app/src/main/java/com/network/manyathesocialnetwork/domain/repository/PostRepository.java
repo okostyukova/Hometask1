@@ -14,5 +14,5 @@ import dagger.Provides;
 public interface PostRepository {
     void getPosts(DataCallback<Post> callback);
     void getComments(int id, DataCallback<Comment> callback);
-    void addPost(int userId, int id, String title, String body, DataCallback<Post> callback);
+    void addPost(Post post, DataCallback<Post> callback);
 }

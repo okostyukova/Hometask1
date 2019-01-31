@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.add_post.AddPostActivity"/>
-        <activity android:name=".presentation.post.PostActivity"/>
+        <activity android:name=".presentation.comment.CommentActivity"/>
     </application>
 
 

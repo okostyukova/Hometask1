@@ -30,7 +30,9 @@ public class MainActivityPresenter extends MvpPresenter<MainActivityView> {
             }
 
             @Override
-            public void onSuccessOneObject(Post post) {}
+            public void onSuccess(Post post) {
+                getViewState().showPost(post);
+            }
 
             @Override
             public void onError(String msg) {
@@ -38,5 +40,11 @@ public class MainActivityPresenter extends MvpPresenter<MainActivityView> {
             }
         });
     }
+
+    public void showComments(Post post) {
+        getViewState().showComments(post);
+    }
+
+
 
 }

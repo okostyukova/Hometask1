@@ -2,7 +2,9 @@ package com.network.manyathesocialnetwork.domain.entity;
 
 import  com.google.gson.annotations.SerializedName;
 
-public class Post {
+import java.io.Serializable;
+
+public class Post implements Serializable {
 
     @SerializedName("userId")
     private int userId;
@@ -13,9 +15,8 @@ public class Post {
     @SerializedName("body")
     private  String body;
 
-    public Post(int userId, int id, String title, String body) {
+    public Post(int userId, String title, String body) {
         this.userId = userId;
-        this.id = id;
         this.title = title;
         this.body = body;
     }

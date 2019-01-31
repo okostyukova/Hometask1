@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:padding="4dp"
+    android:orientation="vertical"
+    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
     android:id="@+id/add_post">
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:id="@+id/addTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Input title" />
+
+    <EditText
+        android:id="@+id/addBody"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Input body" />
+
+    <Button
+        android:id="@+id/confirm_add_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add"/>
+</LinearLayout>
+
