@@ -89,14 +89,13 @@ public class MainActivity extends MvpAppCompatActivity implements MainActivityVi
 
     public void init() {
         RecyclerView recyclerView = findViewById(R.id.feed_recycler);
-        MainAdapter.OnItemClickListener onItemClickListener = new MainAdapter.OnItemClickListener() {
+
+        mainAdapter = new MainAdapter(new MainAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Post post) {
                 presenter.showComments(post);
             }
-        };
-
-        mainAdapter = new MainAdapter(onItemClickListener);
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(mainAdapter);
     }

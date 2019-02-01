@@ -29,7 +29,7 @@ public class CommentPresenter extends MvpPresenter<CommentView> {
             }
 
             @Override
-            public void onSuccess(Comment temp) { }
+            public void onSuccess(Comment temp) {}
 
             @Override
             public void onError(String message) {

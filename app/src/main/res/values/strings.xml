@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">ManyaTheSocialNetwork</string>
     <string name="add_post">Add post</string>
+    <string name="input_title">Input title</string>
+    <string name="input_body">Input body</string>
+    <string name="add_button">Add</string>
+    <string name="comments">Comments</string>
 </resources>

@@ -2,11 +2,9 @@ package com.network.manyathesocialnetwork.presentation.add_post;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
@@ -27,25 +25,23 @@ public class AddPostActivity extends MvpAppCompatActivity implements AddPostView
         return presenter;
     }
 
-
-
+    EditText etTitle = findViewById(R.id.addTitle);
+    EditText etBody = findViewById(R.id.addBody);
+    Post post = new Post(1, etTitle.getText().toString(), etBody.getText().toString());
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         App.getAppComponent().inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
 
-        EditText etTitle = findViewById(R.id.addTitle);
-        EditText etBody = findViewById(R.id.addBody);
-        Post post = new Post(1, etTitle.getText().toString(), etBody.getText().toString());
-
         Button confirmButton = findViewById(R.id.confirm_add_button);
-//        confirmButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                presenter.createPost(post);
-//            }
-//        });
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.createPost(post);
+            }
+        });
     }
 
     @Override

@@ -3,7 +3,6 @@ package com.network.manyathesocialnetwork.presentation.comment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
@@ -15,7 +14,6 @@ import com.network.manyathesocialnetwork.di.App;
 import com.network.manyathesocialnetwork.domain.entity.Comment;
 import com.network.manyathesocialnetwork.domain.entity.Post;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -38,7 +36,8 @@ public class CommentActivity extends MvpAppCompatActivity implements CommentView
         App.getAppComponent().inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
-        RecyclerView recyclerView = findViewById(R.id.recycler_comment);
+
+        RecyclerView recyclerView = findViewById(R.id.feed_comment);
 
         Post post = (Post) getIntent().getSerializableExtra("POST");
 

@@ -1,5 +1,7 @@
 package com.network.manyathesocialnetwork.data.repository;
 
+import android.support.annotation.NonNull;
+
 import com.network.manyathesocialnetwork.domain.entity.Post;
 import com.network.manyathesocialnetwork.domain.repository.PostRepository;
 
@@ -33,14 +35,14 @@ public class PostRepositoryImpl implements PostRepository {
                 .getPosts()
                 .enqueue(new Callback<List<Post>>() {
                     @Override
-                    public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                    public void onResponse(@NonNull Call<List<Post>> call, @NonNull Response<List<Post>> response) {
                         if (response.body() != null) {
                             callback.onSuccess(response.body());
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<List<Post>> call, Throwable t) {
+                    public void onFailure(@NonNull Call<List<Post>> call, @NonNull Throwable t) {
                         callback.onError(ERROR_MESSAGE);
                     }
                 });
@@ -52,14 +54,14 @@ public class PostRepositoryImpl implements PostRepository {
                 .getComments(id)
                 .enqueue(new Callback<List<Comment>>() {
                     @Override
-                    public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
+                    public void onResponse(@NonNull Call<List<Comment>> call, @NonNull Response<List<Comment>> response) {
                         if (response.body() != null) {
                             callback.onSuccess(response.body());
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<List<Comment>> call, Throwable t) {
+                    public void onFailure(@NonNull Call<List<Comment>> call, @NonNull Throwable t) {
                         callback.onError(ERROR_MESSAGE);
                     }
                 });
@@ -71,14 +73,14 @@ public class PostRepositoryImpl implements PostRepository {
                 .addPost(post)
                 .enqueue(new Callback<Post>() {
                     @Override
-                    public void onResponse(Call<Post> call, Response<Post> response) {
+                    public void onResponse(@NonNull Call<Post> call, @NonNull Response<Post> response) {
                         if (response.body() != null) {
                             callback.onSuccess(response.body());
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<Post> call, Throwable t) {
+                    public void onFailure(@NonNull Call<Post> call, Throwable t) {
                         callback.onError(ERROR_MESSAGE);
                     }
                 });

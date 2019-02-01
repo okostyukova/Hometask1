@@ -72,9 +72,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View view) {
-                    int pos = getLayoutPosition();
                     if (listener != null)
-                        listener.onItemClick(posts.get(pos));
+                        listener.onItemClick(posts.get(getLayoutPosition()));
                 }
             });
 
