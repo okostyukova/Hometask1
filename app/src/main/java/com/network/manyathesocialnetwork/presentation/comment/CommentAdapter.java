@@ -42,7 +42,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Comment comment = comments.get(position);
 
-        holder.postIdView.setText(String.valueOf(comment.getPostId()));
         holder.numberIdView.setText(String.valueOf(comment.getId()));
         holder.nameView.setText(comment.getName());
         holder.bodyView.setText(comment.getBody());
@@ -54,7 +53,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView postIdView;
         TextView numberIdView;
         TextView nameView;
         TextView bodyView;
@@ -62,9 +60,8 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            postIdView = itemView.findViewById(R.id.postId);
             numberIdView = itemView.findViewById(R.id.numberId);
-            nameView = itemView.findViewById(R.id.name);
+            nameView = itemView.findViewById(R.id.title);
             bodyView = itemView.findViewById(R.id.body);
         }
     }

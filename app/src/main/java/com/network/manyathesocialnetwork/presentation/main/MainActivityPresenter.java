@@ -30,9 +30,7 @@ public class MainActivityPresenter extends MvpPresenter<MainActivityView> {
             }
 
             @Override
-            public void onSuccess(Post post) {
-                getViewState().showPost(post);
-            }
+            public void onSuccess(Post post) {}
 
             @Override
             public void onError(String msg) {

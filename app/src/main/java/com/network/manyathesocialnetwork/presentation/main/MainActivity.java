@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import com.network.manyathesocialnetwork.presentation.comment.CommentActivity;
 import com.network.manyathesocialnetwork.domain.entity.Post;
 import com.network.manyathesocialnetwork.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.network.manyathesocialnetwork.presentation.add_post.AddPostActivity;
@@ -37,6 +39,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainActivityVi
     }
 
     private MainAdapter mainAdapter;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +48,17 @@ public class MainActivity extends MvpAppCompatActivity implements MainActivityVi
         setContentView(R.layout.activity_feed);
 
         init();
-        presenter.showPosts();
 
         Button addPostButton = findViewById(R.id.add_post_btn);
         addPostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(getApplicationContext(), AddPostActivity.class), 1);
+                Intent intent = new Intent(MainActivity.this, AddPostActivity.class);
+                startActivityForResult(intent, 1);
             }
         });
+
+        presenter.showPosts();
     }
 
     @Override
@@ -62,7 +67,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainActivityVi
     }
 
     @Override
-    public void showPost(Post post) {
+    public void addPost(Post post) {
         mainAdapter.loadPost(post);
     }
 
@@ -70,13 +75,12 @@ public class MainActivity extends MvpAppCompatActivity implements MainActivityVi
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 1) {
-            if (data != null) {
-                Post post = (Post) data.getExtras().getSerializable("POST");
-                if (post != null) {
-                    presenter.showPosts();
+                Post newPost = (Post) data.getExtras().getSerializable("POST");
+                if (newPost != null) {
+                    addPost(newPost);
+                    Toast.makeText(getApplicationContext(), "New post created" , Toast.LENGTH_LONG).show();
                 }
             }
-        }
         else {
             showError(ERROR);
         }
@@ -88,9 +92,11 @@ public class MainActivity extends MvpAppCompatActivity implements MainActivityVi
     }
 
     public void init() {
-        RecyclerView recyclerView = findViewById(R.id.feed_recycler);
+        recyclerView = findViewById(R.id.feed_recycler);
 
-        mainAdapter = new MainAdapter(new MainAdapter.OnItemClickListener() {
+        List<Post> data = new ArrayList<>();
+
+        mainAdapter = new MainAdapter(data, new MainAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Post post) {
                 presenter.showComments(post);

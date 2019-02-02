@@ -11,12 +11,14 @@ import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.network.manyathesocialnetwork.R;
-import com.network.manyathesocialnetwork.domain.callback.DataCallback;
 import com.network.manyathesocialnetwork.domain.entity.Post;
 import com.network.manyathesocialnetwork.di.App;
 
+import javax.inject.Inject;
+
 public class AddPostActivity extends MvpAppCompatActivity implements AddPostView {
 
+    @Inject
     @InjectPresenter
     AddPostPresenter presenter;
 
@@ -25,21 +27,30 @@ public class AddPostActivity extends MvpAppCompatActivity implements AddPostView
         return presenter;
     }
 
-    EditText etTitle = findViewById(R.id.addTitle);
-    EditText etBody = findViewById(R.id.addBody);
-    Post post = new Post(1, etTitle.getText().toString(), etBody.getText().toString());
-    
+    EditText etTitle, etBody;
+    Post post; // make sure the title and the body are not empty
+    Button confirmButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         App.getAppComponent().inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
 
-        Button confirmButton = findViewById(R.id.confirm_add_button);
+        etTitle = findViewById(R.id.addTitle);
+        etBody = findViewById(R.id.addBody);
+        confirmButton = findViewById(R.id.confirm_add_button);
+
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.createPost(post);
+                post = new Post(1, 0,  etTitle.getText().toString(), etBody.getText().toString());
+                if (!post.getTitle().equals("") && !post.getBody().equals("")) {
+                    presenter.createPost(post);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Repeat input", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -53,8 +64,8 @@ public class AddPostActivity extends MvpAppCompatActivity implements AddPostView
     }
 
     @Override
-    public void addPostError() {
-        Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+    public void addPostError(String msg) {
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
         setResult(0);
         finish();
     }

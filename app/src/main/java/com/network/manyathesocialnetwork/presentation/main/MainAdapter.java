@@ -2,10 +2,12 @@ package com.network.manyathesocialnetwork.presentation.main;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.network.manyathesocialnetwork.R;
 import com.network.manyathesocialnetwork.domain.entity.Post;
@@ -17,21 +19,22 @@ import javax.inject.Inject;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
-    private List<Post> posts = new ArrayList<>();
+    private List<Post> posts;
     private OnItemClickListener listener;
 
     @Inject
-    MainAdapter(OnItemClickListener listener) {
+    MainAdapter(List<Post> data, OnItemClickListener listener) {
+        this.posts = data;
         this.listener = listener;
     }
 
-    public void loadPosts(List<Post> posts) {
-        this.posts.addAll(posts);
+    public void loadPosts(List<Post> data) {
+        posts.addAll(data);
         notifyDataSetChanged();
     }
 
     public void loadPost(Post post) {
-        this.posts.add(post);
+        posts.add(0, post);
         notifyDataSetChanged();
     }
 

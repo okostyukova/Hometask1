@@ -33,7 +33,7 @@ public class AddPostPresenter extends MvpPresenter<AddPostView> {
 
             @Override
             public void onError(String message) {
-                getViewState().addPostError();
+                getViewState().addPostError(message);
             }
         });
     }

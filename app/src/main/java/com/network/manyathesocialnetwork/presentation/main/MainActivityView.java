@@ -8,7 +8,7 @@ import com.network.manyathesocialnetwork.domain.entity.Post;
 
 public interface MainActivityView extends MvpView {
     void showPosts(List<Post> posts);
-    void showPost(Post post);
+    void addPost(Post post);
     void showComments(Post post);
     void showError(String msg);
 }
